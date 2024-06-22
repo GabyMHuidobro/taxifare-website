@@ -79,4 +79,4 @@ def get_fare():
 
 predicted_fare = get_fare()
 
-st.header(f'fare = {predicted_fare}')
+st.header(f'fare = {predicted_fare} dollars')
