@@ -59,19 +59,24 @@ url = 'https://taxifare.lewagon.ai/predict'
 
 date_time = f'{date} {time}'
 
-user_request = {
-    'pickup_datetime':date_time,
-    'pickup_longitude':pickup_longitude,
-    'pickup_latitude':pickup_latitude,
-    'dropoff_longitude':dropoff_longitude,
-    'dropoff_latitude':dropoff_latitude,
-    'passenger_count':passenger_count
-    }
+def get_fare():
+    user_request = {
+        'pickup_datetime':date_time,
+        'pickup_longitude':pickup_longitude,
+        'pickup_latitude':pickup_latitude,
+        'dropoff_longitude':dropoff_longitude,
+        'dropoff_latitude':dropoff_latitude,
+        'passenger_count':passenger_count
+        }
 
-response = requests.get(url, params=user_request)
+    response = requests.get(url, params=user_request)
 
-prediction = response.json()
+    prediction = response.json()
 
-predicted_fare = prediction['fare']
+    predicted_fare = prediction['fare']
+
+    return predicted_fare
+
+predicted_fare = get_fare()
 
 st.header(f'fare = {predicted_fare}')
